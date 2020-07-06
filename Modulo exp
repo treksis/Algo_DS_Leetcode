@@ -1,0 +1,14 @@
+#Implement the function FastModularExponentiation(b, k, m)FastModularExponentiation(b,k,m) which computes b^{2^k} \bmod{m}b2k modm using only around 2k2k modular multiplications. You are not allowed to use Python built-in exponentiation functions.
+
+def FastModularExponentiation(b, k, m):
+    return pow(b, pow(2, k), m)
+    
+    
+def FastModularExponentiation(b, e, m):
+    res = 1
+    while e > 1:
+        if e & 1:
+            res = (res * b) % m
+        b = b ** 2 % m
+        e >>= 1
+    return (b * res) % m
