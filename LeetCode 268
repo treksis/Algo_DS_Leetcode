@@ -1,0 +1,38 @@
+class Solution:
+    
+    def sort_method(self, nums):
+        # Brute_force
+        # T: O(N*logN)
+        # S: O(N)
+        nums.sort()
+        for i in range(len(nums)):
+            if i != nums[i]:
+                return i
+        return len(nums)
+    
+    def sum_method(self, nums):
+        # Risk of overflow
+        # T: O(N)
+        # S: O(1)
+        
+        n = len(nums)
+        return int(n * (n+1) / 2 - sum(nums))
+    
+    def missingNumber(self, nums):
+        # Bitwise operation
+        # T: O(N)
+        # S: O(1)
+        
+        N = len(nums)
+        combined = 0
+        #XOR all values in nums
+        for num in nums:
+            #print("XOR with: {}".format(num))
+            combined ^= num
+        
+        #XOR all values in [0,N]
+        for value in range(0,N+1):
+            #print("XOR with {}".format(value))
+            combined ^= value
+        
+        return combined
