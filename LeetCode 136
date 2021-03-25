@@ -1,0 +1,29 @@
+from collections import Counter
+
+class Solution:
+    def singleNumber(self, nums):
+        # T: O(N)
+        # S: O(1)
+        res = 0
+        for num in nums:
+            res ^= num
+            print(res)
+        return res
+        
+    def hash_map_method(self, nums):
+        # T: O(N)
+        # S: O(N)
+        
+        dict = {}
+        
+        for i in nums:
+            if (i in dict):
+                dict[i] += 1
+            else:
+                dict[i] = 1
+                
+                
+        for j, k in dict.items():
+            if k == 1:
+                return j
+
