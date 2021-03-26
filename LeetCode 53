@@ -1,0 +1,44 @@
+class Solution:
+    def maxSubArray_(self, nums: List[int]) -> int:
+      #T: O(N^2)
+      #S: O(1)
+        subsum = float("-inf")
+        for i in range(len(nums)):
+            for j in range(i+1, len(nums)+1):
+                tmp = sum(nums[i:j])
+                print(nums[i:j])
+                if subsum < tmp:
+                    subsum = tmp
+        return subsum
+    
+    # Kadane algorithm's implementation
+    
+      #T: O(N)
+      #S: O(1)
+
+    def maxSubArray(self, nums):
+        length = len(nums)
+        if length == 0:
+            return -1
+        maxsub = [None] * length
+        maxsub[0] = nums[0]
+        for i in range(1, length):
+            maxsub[i] = max(nums[i], maxsub[i-1]+nums[i])
+        return max(maxsub)
+    
+
+    def maxSubArray___(self, nums: List[int]) -> int:
+    
+      #T: O(N)
+      #S: O(1)
+
+        dp = [0]*len(nums)
+        dp[0] = nums[0]
+        """
+        dp[1] = max(dp[0]+nums[1],nums[1])
+        dp[2] = max(dp[1]+nums[2],nums[2])
+        """
+        for i in range(1,len(nums)):
+            dp[i] = max(dp[i-1] +nums[i],nums[i])
+        return max(dp)
+        
