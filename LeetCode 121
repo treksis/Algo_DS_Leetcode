@@ -1,0 +1,30 @@
+    def pythonic(self, prices: List[int]) -> int:
+    
+      T: O(N)
+      S: O(1)
+      
+        if len(prices) < 1: 
+            return 0
+        profit, low = 0, prices[0]
+        for price in prices:
+            low = min(low, price)
+            profit = max(profit, price-low)
+        return profit
+        
+    
+    
+    def bruteforce(prices):
+    
+    T: O(N)
+    S: O(N)
+        
+        if len(prices) < 1:
+            return 0
+        
+        ans = []
+        for i in range(0, len(prices)-1):
+            for j in range(i, len(prices)):
+                if prices[i] < prices[j]:
+                    ans.append(prices[j] - prices[i])
+      
+        return max(ans) if ans else 0
