@@ -1,0 +1,22 @@
+    def hasCycle_(self, head):
+        #Floyd's Algorithm
+        
+        slow = head
+        fast = head
+        
+        while fast and fast.next:
+            fast = fast.next.next
+            slow = slow.next
+            if slow == fast:
+                return True
+        return False
+
+    def hasCycle(self, head: ListNode) -> bool:
+        visited = set()
+        while head:
+            if not head in visited:
+                visited.add(head)
+            else:
+                return True
+            head = head.next
+        return False
