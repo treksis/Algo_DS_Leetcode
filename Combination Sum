@@ -1,0 +1,83 @@
+class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        res = []
+        subset = []
+        
+        if not candidates:
+            return res
+        
+        candidates.sort()
+        
+        start = 0
+        
+        self.dfs(candidates, target, res, subset, start)
+        return res
+    
+    def dfs(self, candidates, target, res, subset, start):
+        if sum(subset) == target:
+            return res.append(subset[:])
+        
+        if sum(subset) > target:
+            return
+        
+        for i in range(start, len(candidates)):
+            if sum(subset) + candidates[i] > target:
+                break
+            subset.append(candidates[i])
+            self.dfs(candidates, target, res, subset, i)
+            subset.pop()
+           
+           
+class Solution:
+    def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
+        res = []
+        subset = []
+        start = 0
+        candidates.sort()
+        self.dfs(candidates, target, res, subset, start)
+        return res
+    
+    def dfs(self, candidates, target, res, subset, start):
+        if sum(subset) == target:
+            return res.append(subset[:])
+        
+        if sum(subset) > target:
+            return
+        
+        for i in range(start, len(candidates)):
+            if sum(subset) + candidates[i] > target:
+                break
+            
+            if i > start and candidates[i] == candidates[i-1]:
+                continue
+            
+            subset.append(candidates[i])
+            self.dfs(candidates, target, res, subset, i+1)
+            subset.pop()
+            
+class Solution:
+    def combinationSum3(self, k: int, n: int) -> List[List[int]]:
+        nums = list(range(1, 10))
+        #print(nums)
+        res = []
+        subset = []
+        start = 0
+        self.dfs(k, n, res, subset, nums, start)
+        return res
+    
+    def dfs(self, k, n, res, subset, nums, start):
+        if sum(subset) == n and len(subset) == k:
+            return res.append(subset[:])
+        
+        if sum(subset) > n:
+            return
+        
+        for i in range(start, len(nums)):
+            if sum(subset) + nums[i] > n:
+                break
+                
+            if i > start and nums[i] == nums[i-1]:
+                continue
+            subset.append(nums[i])
+            self.dfs(k, n, res, subset, nums, i+1)
+            subset.pop()
