@@ -1,3 +1,5 @@
-# Algorithms
+# Algorithms and Data Structure.
+# LeetCode
 
-https://www.coursera.org/specializations/discrete-mathematics
+
+https://leetcode.com/treksis/
